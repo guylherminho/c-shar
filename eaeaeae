@@ -72,3 +72,63 @@ namespace ConsoleApplication4
         }
     }
 }
+___________________________________________________________________________________________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //crio a lista "Pessoas" dando o nome de "pessoa"
+            IList<Pessoas> pessoa = new List<Pessoas>();
+            //quero criar uma lista com 10 pessoas, crio uma variavel com o valor de 10.
+            int total = 10;
+            //crio randomicamente 
+            Random r = new Random();
+            //uso o datetime para criar uma data inicial (1990).
+            DateTime dataInicial = new DateTime(1990, 01, 01);
+            //crio outra variavel datetime para uma data final, sendo que ela é -16 anos da data de hoje (.Now)
+            DateTime dataFinal = DateTime.Now.AddYears(-16);
+            //resultado das contas das datas
+            TimeSpan tempo = (dataFinal - dataInicial);
+            //até zerar ele vai criar uma pessoa -->0
+            while (total-->0)
+            {
+                Pessoas pessoas = new Pessoas();
+                //r.next lista aleatorio um numero para cada pessoa
+                pessoas.nome = "Nome " + r.Next(100);
+                pessoas.dataNasc = dataInicial.AddDays(
+                    r.Next((int) tempo.TotalDays)
+                    );
+                pessoa.Add(pessoas)
+            }
+
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication6
+{
+
+    //cria uma classe de pessoas  definindo seus atributos
+    class Pessoas
+    {
+        public string nome { get; set; }
+        public DateTime dataNasc { get; set; }
+
+       
+    }
+}
