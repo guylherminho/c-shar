@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void ValoresMultiplosDeTres()
+        {
+            int[] numeros = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var multiplo3 =
+                from inteiro in numeros
+                where inteiro % 3 == 0
+                select inteiro;
+            foreach (var inteiro in multiplo3)
+            {
+                Console.WriteLine(inteiro);
+                Console.ReadKey();
+            }
+        }
+    }
+}
+       
+
+
+        
+
+
+        static void Main(string[] args)
+        {
+            List<Aluno> alunos = new List<Aluno>();
+            int total = 10;
+            Random r = new Random();
+            DateTime dataInicial = new DateTime(1990, 01, 01);
+            DateTime dataFinal = DateTime.Now.AddYears(-16);
+            TimeSpan tempo = (dataFinal - dataInicial);
+            while(total-->0)
+            {
+                Aluno aluno = new Aluno();
+                aluno.nome = "Nome " + r.Next(100);
+                aluno.matricula = "matricula"+ 
+                    r.Next(500).ToString();
+                aluno.DataNasc = dataInicial.AddDays(
+                    r.Next((int)tempo.TotalDays)
+                    );
+                alunos.Add(aluno);
+            }
+
+ 
+                // cria uma variavel para selecionar os maiores de 18 anos
+                var Maioresde18 =
+                //busca em ALUNOS, pegando os resultados e colocando na variavel "a"
+                from a in alunos
+                    //só vai selecionar os dados de "alunos" os dados que atenderem esses requisitos abaixo
+                where (DateTime.Now - a.DataNasc).TotalDays > (365 * 18)
+                //seleciona os dados(se quiser os dados inteiros só colocar o "a", se quiser os dados especificos
+                //colocar a.(dados) , exemplos a.nome, a.matricula ou somente a;
+                select a.nome;
+
+              var porPartes =
+              alunos.Where(
+              a => (DateTime.Now - a.dataNasc).TotalDays > (365 * 18)
+                );
+    var maioresde18lamda = porPartes.Select(b => b.nome);
+    foreach (String nome in Maioresde18)
+    {
+        Console.WriteLine()
+    }
+        }
+    }
+}
